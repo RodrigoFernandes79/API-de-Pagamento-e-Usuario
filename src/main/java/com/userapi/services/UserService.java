@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.userapi.domain.User;
+
 import com.userapi.repositories.UserRepository;
 
 @Service
@@ -30,6 +31,7 @@ public class UserService {
 
 	public User listarUsuariosPorId(Long id) {
 		Optional<User> obj = userRepository.findById(id);
+				obj.orElseThrow(()-> new RuntimeException("Id " +id + " Não encontrado"));
 		return obj.get();
 	}
 
